@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressHandlebars = require('express-handlebars');
+var hbsHelpers = require('./helpers').config();
 var routeCache = require('route-cache');
 
 var routes = require('./routes/index');
@@ -13,9 +15,18 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.set('view cache', true);
-app.use(routeCache.cacheSeconds(5));
+app.set('view engine', 'hbs');
+
+app.engine('hbs', expressHandlebars({
+  defaultLayout: 'layout',
+  extname: '.hbs',
+  layoutsDir: __dirname + '/views',
+  partialsDir: [__dirname + '/views/partials'],
+  helpers: hbsHelpers
+}));
+
+//app.set('view cache', true);
+//app.use(routeCache.cacheSeconds(5));
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));

@@ -5,7 +5,7 @@ var jsondata = require('../json/cover.json');
 /* GET home page. */
 router.get('/', function(req, res) {
   var data = jsondata;
-  data.title='Cover stories';
+  data.title='stories';
   res.render('index', data);
 });
 

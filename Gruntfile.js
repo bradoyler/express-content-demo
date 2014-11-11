@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         }
       },
       views: {
-        files: ['views/*.jade'],
+        files: ['views/*.hbs'],
         options: {
           livereload: reloadPort
         }
@@ -71,9 +71,9 @@ module.exports = function (grunt) {
         });
     }, 500);
   });
-  
+
   grunt.registerTask('default', [
-    'develop', 
+    'develop',
     'watch'
   ]);
 };

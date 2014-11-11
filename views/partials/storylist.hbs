@@ -1,0 +1,7 @@
+<ul>
+  {{#each this}}
+    <li>
+      <a href='{{canonical_url}}'>{{headline}}</a> {{formatdate last_published_utc}}
+    </li>
+  {{/each}}
+</ul>
